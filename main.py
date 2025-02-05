@@ -32,7 +32,8 @@ def is_perfect(number: int) -> bool:
 
 # Check if a number is an Armstrong number
 def is_armstrong(number: int) -> bool:
-    number = abs(number)
+    if number < 0:
+        return False
     digits = str(number)
     power = len(digits)
     total = sum(int(d) ** power for d in digits)

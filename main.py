@@ -19,18 +19,20 @@ async def get_fun_fact(number: int) -> str:
 def is_prime(number: int) -> bool:
     if number < 2:
         return False
-    for i in range(2, number):
+    for i in range(2, abs(number)):
         if number % i == 0:
             return False
     return True
 
 # Check if a number is perfect
 def is_perfect(number: int) -> bool:
+    number = abs(number)
     total = sum(i for i in range(1, number) if number % i == 0)
     return total == number
 
 # Check if a number is an Armstrong number
 def is_armstrong(number: int) -> bool:
+    number = abs(number)
     digits = str(number)
     power = len(digits)
     total = sum(int(d) ** power for d in digits)
@@ -38,7 +40,7 @@ def is_armstrong(number: int) -> bool:
 
 # Calculate digit sum
 def digit_sum(number: int) -> int:
-    return sum(int(d) for d in str(number))
+    return sum(int(d) for d in str(abs(number)))
 
 # Determine properties of a number
 def classify_number_properties(number: int):
@@ -51,7 +53,7 @@ def classify_number_properties(number: int):
 # Generate formatted fun fact if Armstrong number
 def format_fun_fact(number: int) -> str:
     if is_armstrong(number):
-        digits = [int(d) for d in str(number)]
+        digits = [int(d) for d in str(abs(number))]
         formatted_fact = f"{number} is an Armstrong number because " + " + ".join(
             [f"{d}^{len(digits)}" for d in digits]
         ) + f" = {number}"
@@ -65,7 +67,7 @@ def format_fun_fact(number: int) -> str:
 async def classify_number(request: Request):
     number_param = request.query_params.get("number")
 
-    if not number_param or not number_param.isdigit():
+    if not number_param or not number_param.lstrip('-').isdigit():
         return {
             "number": number_param,
             "error": True

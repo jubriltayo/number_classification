@@ -58,7 +58,7 @@ GET http://127.0.0.1:8000/api/classify-number?number=371
 
 ### **1. Clone the Repository:**
 ```sh
-git clone https://github.com/jubriltayo/number_classification.git
+git clone https://github.com/jubriltayo/hngx-stage1-number-classification.git
 ```
 
 ### **2. Install Dependencies:**
